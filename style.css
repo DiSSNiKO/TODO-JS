@@ -1,0 +1,217 @@
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Josefin Sans", sans-serif;
+    background-color: hsl(235, 21%, 11%);
+    overflow: hidden;
+}
+
+main {
+    position: relative;
+    width: 600px;
+    margin: auto;
+    margin-top: 80px;
+    z-index: 2;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.title h1 {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 15px;
+}
+
+.title img {
+    height: 30px;
+    width: auto;
+    align-self: center;
+}
+
+.input-cont {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas: 'ch l l l l l l l';
+    background-color: hsl(235, 24%, 19%);
+    padding: 15px 0;
+    border-radius: 5px;
+    box-shadow: 10px 10px 30px 1px rgba(14, 13, 13, 0.5);
+}
+
+#newtodoform {
+    grid-area: l;
+}
+
+
+.check {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; */
+    background-color: hsl(237, 14%, 26%);
+    border-radius: 50%;
+}
+
+.checkmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    background-color: hsl(235, 24%, 19%);
+    border-radius: 50%;
+}
+
+.label-helper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+
+.cross {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 9px;
+    display: none;
+}
+
+#newtodo {
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    color: hsl(234, 11%, 52%);
+}
+
+
+button,
+input[type="submit"],
+input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+
+.task-cont {
+    margin-top: 20px;
+    box-shadow: 10px 10px 30px 1px rgba(14, 13, 13, 0.75);
+}
+
+.task {
+    background-color: hsl(235, 24%, 19%);
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas: 'ch de de de de de de cl';
+    background-color: hsl(235, 24%, 19%);
+    padding: 15px 0;
+    border-bottom: 1px solid hsl(237, 14%, 26%);
+}
+
+.descSpan {
+    font-size: 15px;
+    grid-area: de;
+    font-weight: 400;
+    color: hsl(234, 39%, 85%);
+}
+
+.label-helper {
+    position: relative;
+    grid-area: ch;
+}
+
+.label-helper .check:hover {
+    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.task .checkmark:hover {
+    cursor: pointer;
+}
+
+.label-helper>input:checked~.check>.checkmark {
+    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.isChecked {
+    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.label-helper>input:checked~.check>.checkmark .cross {
+    display: block;
+}
+
+
+.firstTask {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.functionality {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: hsl(235, 24%, 19%);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.functionality button:hover {
+    color: hsl(236, 33%, 92%);
+}
+
+.buttons-cont {
+    display: flex;
+    font-size: 12px;
+}
+
+.buttons-cont button {
+    margin-left: 10px;
+    font-weight: 400;
+    color: hsl(234, 11%, 52%);
+}
+
+.lonebu {
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: hsl(234, 11%, 52%);
+}
+
+.items-left {
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: hsl(234, 11%, 52%);
+}
