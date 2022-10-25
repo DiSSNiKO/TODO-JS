@@ -1,217 +1,249 @@
+:root {
+  --bigfont: 30px;
+  --mediumfont: 20px;
+  --smallfont: 15px;
+  --checkboxwh: 18px;
+  --checkboxbck: 20px;
+}
+
 .background-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Josefin Sans", sans-serif;
-    background-color: hsl(235, 21%, 11%);
-    overflow: hidden;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: hsl(235, 21%, 11%);
+  overflow: hidden;
 }
 
 main {
-    position: relative;
-    width: 600px;
-    margin: auto;
-    margin-top: 80px;
-    z-index: 2;
+  width: 600px;
+  margin: auto;
+  margin-top: 100px;
 }
 
 .title {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
 }
 
 .title h1 {
-    color: white;
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 15px;
+  color: white;
+  font-size: var(--bigfont);
+  font-weight: 700;
+  letter-spacing: 15px;
 }
 
 .title img {
-    height: 30px;
-    width: auto;
-    align-self: center;
+  height: 30px;
+  width: auto;
+  align-self: center;
 }
 
 .input-cont {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-areas: 'ch l l l l l l l';
-    background-color: hsl(235, 24%, 19%);
-    padding: 15px 0;
-    border-radius: 5px;
-    box-shadow: 10px 10px 30px 1px rgba(14, 13, 13, 0.5);
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-areas: "ch l l l l l l l";
+  background-color: hsl(235, 24%, 19%);
+  padding: 15px 0;
+  border-radius: 5px;
+  box-shadow: 10px 10px 30px 1px rgba(14, 13, 13, 0.5);
 }
 
 #newtodoform {
-    grid-area: l;
+  grid-area: l;
 }
 
-
 .check {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* -webkit-user-select: none;
+  position: absolute;
+  width: var(--checkboxbck);
+  height: var(--checkboxbck);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; */
-    background-color: hsl(237, 14%, 26%);
-    border-radius: 50%;
+  background-color: hsl(237, 14%, 26%);
+  border-radius: 50%;
 }
 
 .checkmark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 18px;
-    height: 18px;
-    background-color: hsl(235, 24%, 19%);
-    border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--checkboxwh);
+  height: var(--checkboxwh);
+  background-color: hsl(235, 24%, 19%);
+  border-radius: 50%;
 }
 
 .label-helper input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 }
 
-
-
 .cross {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 9px;
-    display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 10px;
+  display: none;
 }
 
 #newtodo {
-    background-color: transparent;
-    border: none;
-    color: white;
-    outline: none;
-    color: hsl(234, 11%, 52%);
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  color: white;
+  outline: none;
+  font-size: var(--mediumfont);
+  color: hsl(234, 11%, 52%);
 }
-
 
 button,
 input[type="submit"],
 input[type="reset"] {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
-
 .task-cont {
-    margin-top: 20px;
-    box-shadow: 10px 10px 30px 1px rgba(14, 13, 13, 0.75);
+  margin-top: 20px;
+  box-shadow: 10px 10px 30px 1px rgba(14, 13, 13, 0.75);
 }
 
 .task {
-    background-color: hsl(235, 24%, 19%);
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-areas: 'ch de de de de de de cl';
-    background-color: hsl(235, 24%, 19%);
-    padding: 15px 0;
-    border-bottom: 1px solid hsl(237, 14%, 26%);
+  background-color: hsl(235, 24%, 19%);
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-areas: "ch de de de de de de cl";
+  background-color: hsl(235, 24%, 19%);
+  padding: 15px 0;
+  border-bottom: 1px solid hsl(237, 14%, 26%);
 }
 
 .descSpan {
-    font-size: 15px;
-    grid-area: de;
-    font-weight: 400;
-    color: hsl(234, 39%, 85%);
+  font-size: var(--mediumfont);
+  grid-area: de;
+  font-weight: 400;
+  color: hsl(234, 39%, 85%);
 }
 
 .label-helper {
-    position: relative;
-    grid-area: ch;
+  position: relative;
+  grid-area: ch;
 }
 
 .label-helper .check:hover {
-    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
 .task .checkmark:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.label-helper>input:checked~.check>.checkmark {
-    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+.label-helper > input:checked ~ .check > .checkmark {
+  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
 .isChecked {
-    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
-.label-helper>input:checked~.check>.checkmark .cross {
-    display: block;
+.label-helper > input:checked ~ .check > .checkmark .cross {
+  display: block;
 }
-
 
 .firstTask {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .functionality {
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    background-color: hsl(235, 24%, 19%);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: hsl(235, 24%, 19%);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .functionality button:hover {
-    color: hsl(236, 33%, 92%);
+  color: hsl(236, 33%, 92%);
 }
 
 .buttons-cont {
-    display: flex;
-    font-size: 12px;
+  display: flex;
+  font-size: var(--smallfont);
 }
 
 .buttons-cont button {
-    margin-left: 10px;
-    font-weight: 400;
-    color: hsl(234, 11%, 52%);
+  margin-left: 10px;
+  font-weight: 400;
+  color: hsl(234, 11%, 52%);
 }
 
 .lonebu {
-    margin-right: 10px;
-    font-size: 12px;
-    font-weight: 400;
-    color: hsl(234, 11%, 52%);
+  margin-right: 10px;
+  width: 15%;
+  font-size: var(--smallfont);
+  font-weight: 400;
+  color: hsl(234, 11%, 52%);
+  text-align: right;
+}
+.itemsleftcont {
+  display: flex;
+  width: 15%;
+  margin-left: 10px;
+}
+.items-left {
+  display: block;
+  font-size: var(--smallfont);
+  font-weight: 400;
+  color: hsl(234, 11%, 52%);
+}
+.items-left-num {
+  display: inline-block;
+  padding-right: 10px;
 }
 
-.items-left {
-    margin-left: 10px;
-    font-size: 12px;
-    font-weight: 400;
-    color: hsl(234, 11%, 52%);
+@media screen and (max-width: 1920px) {
+  main {
+    width: 800px;
+  }
+  :root {
+    --bigfont: 35px;
+    --mediumfont: 20px;
+    --smallfont: 15px;
+    --checkboxwh: 20px;
+    --checkboxbck: 22px;
+  }
+  .checkmark img {
+    width: 15px;
+    height: auto;
+  }
 }
