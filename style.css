@@ -136,6 +136,8 @@ input[type="reset"] {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   scrollbar-width: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .task-cont::-webkit-scrollbar {
@@ -257,9 +259,10 @@ input[type="reset"] {
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
   main {
     width: 350px;
+    margin-top: 145px;
   }
 
   :root {
@@ -302,18 +305,22 @@ input[type="reset"] {
   }
 }
 
+
+
+@media screen and (max-height: 1000px) {
+  .task-cont {
+    max-height: 489px;
+  }
+}
+
 @media screen and (max-height: 768px) {
   .task-cont {
     max-height: 270px;
-    overflow-y: scroll;
-    overflow-x: hidden;
   }
 }
 
 @media screen and (max-height: 545px) {
   .task-cont {
     max-height: 144.75px;
-    overflow-y: scroll;
-    overflow-x: hidden;
   }
 }
