@@ -133,7 +133,15 @@ input[type="reset"] {
 .task-cont {
   margin-top: 20px;
   box-shadow: 10px 10px 30px 1px rgba(14, 13, 13, 0.75);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  scrollbar-width: none;
 }
+
+.task-cont::-webkit-scrollbar {
+  display: none;
+}
+
 
 .task {
   background-color: hsl(235, 24%, 19%);
@@ -166,7 +174,7 @@ input[type="reset"] {
   cursor: pointer;
 }
 
-.label-helper > input:checked ~ .check > .checkmark {
+.label-helper>input:checked~.check>.checkmark {
   background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
@@ -174,13 +182,8 @@ input[type="reset"] {
   background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 
-.label-helper > input:checked ~ .check > .checkmark .cross {
+.label-helper>input:checked~.check>.checkmark .cross {
   display: block;
-}
-
-.firstTask {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 }
 
 .functionality {
@@ -198,11 +201,12 @@ input[type="reset"] {
 
 .buttons-cont {
   display: flex;
+  width: 25%;
+  justify-content: space-between;
   font-size: var(--smallfont);
 }
 
 .buttons-cont button {
-  margin-left: 10px;
   font-weight: 400;
   color: hsl(234, 11%, 52%);
 }
@@ -215,17 +219,20 @@ input[type="reset"] {
   color: hsl(234, 11%, 52%);
   text-align: right;
 }
+
 .itemsleftcont {
   display: flex;
   width: 15%;
   margin-left: 10px;
 }
+
 .items-left {
   display: block;
   font-size: var(--smallfont);
   font-weight: 400;
   color: hsl(234, 11%, 52%);
 }
+
 .items-left-num {
   display: inline-block;
   padding-right: 10px;
@@ -235,6 +242,7 @@ input[type="reset"] {
   main {
     width: 800px;
   }
+
   :root {
     --bigfont: 35px;
     --mediumfont: 20px;
@@ -242,8 +250,70 @@ input[type="reset"] {
     --checkboxwh: 20px;
     --checkboxbck: 22px;
   }
+
   .checkmark img {
     width: 15px;
     height: auto;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  main {
+    width: 350px;
+  }
+
+  :root {
+    --bigfont: 20px;
+    --mediumfont: 15px;
+    --smallfont: 12px;
+    --checkboxwh: 15px;
+    --checkboxbck: 17px;
+  }
+
+  .checkmark img {
+    width: 12px;
+    height: auto;
+  }
+
+  .lonebu {
+    width: 20%;
+    text-align: center;
+  }
+
+  .itemsleftcont {
+    width: 20%;
+  }
+
+  .itemsleftcont span {
+    white-space: normal;
+    word-break: break-word;
+    display: flex;
+    align-items: center;
+  }
+
+  .buttons-cont {
+    width: 35%;
+  }
+
+  .title img {
+    height: 20px;
+    width: auto;
+    align-self: center;
+  }
+}
+
+@media screen and (max-height: 768px) {
+  .task-cont {
+    max-height: 270px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
+
+@media screen and (max-height: 545px) {
+  .task-cont {
+    max-height: 144.75px;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 }
