@@ -32,7 +32,7 @@ function newtodo(e) {
   const newHTML = `<div class="task">
                         <div class="label-helper">
                             <input type="checkbox" class='checkboksu' id='fi${taskIndex}'>
-                            <label class="check" for='fi${taskIndex}'>
+                            <label class="check">
                                 <span class="checkmark usable-checkmark"><img class="cross" src="/images/icon-check.svg" alt=""></span>
                             </label>
                         </div>
@@ -57,10 +57,7 @@ function checkmarkShenanigans(e) {
   if (eTarget.classList.contains("cross")) {
     eTarget = eTarget.closest(".checkmark");
   }
-  if (
-    eTarget.classList.contains("checkmark") ||
-    eTarget.classList.contains("check")
-  ) {
+  if (eTarget.classList.contains("checkmark")) {
     const checkbox = eTarget.closest(".check").previousElementSibling;
     if (!checkbox.checked) {
       eTarget.closest(".check").classList.add("isChecked");
