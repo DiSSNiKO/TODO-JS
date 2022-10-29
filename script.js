@@ -12,6 +12,7 @@ const firstCheckbox = document.querySelector("#formInput");
 let renderables = []; //Use this for storage ig
 let taskIndex = 0; //Would rather not use this
 let totalEntries = 0;
+let totalEntriesChecked = 0;
 let allChecked = false;
 
 // Add new todo
@@ -57,6 +58,8 @@ function newtodo(e) {
   }
   taskIndex += 1;
   totalEntries += 1;
+  firstCheckbox.checked = false;
+  firstCheckbox.nextElementSibling.classList.remove("isChecked");
   displayEntries();
 }
 
@@ -71,15 +74,22 @@ function checkmarkShenanigans(e) {
     if (!checkbox.checked) {
       eTarget.closest(".check").classList.add("isChecked");
       eTarget.closest(".task").classList.add("completed");
+      totalEntriesChecked += 1;
+      if (totalEntries === totalEntriesChecked) {
+        allChecked = true;
+        firstCheckbox.checked = true;
+        firstCheckbox.nextElementSibling.classList.add("isChecked");
+      }
     } else {
       eTarget.closest(".check").classList.remove("isChecked");
       eTarget.closest(".task").classList.remove("completed");
+      totalEntriesChecked -= 1;
+      if (allChecked) {
+        firstCheckbox.checked = false;
+        firstCheckbox.nextElementSibling.classList.remove("isChecked");
+        allChecked = false;
+      }
     }
-  }
-  if (allChecked) {
-    firstCheckbox.checked = false;
-    firstCheckbox.nextElementSibling.classList.remove("isChecked");
-    allChecked = false;
   }
 }
 // Delete completed tasks
@@ -89,6 +99,7 @@ function deleteCompleted() {
   removables.forEach((elem) => {
     elem.remove();
     totalEntries -= 1;
+    totalEntriesChecked -= 1;
   });
   renderables = Array.from(taskCont.querySelectorAll(".task"));
   if (taskCont.firstElementChild) {
@@ -132,16 +143,19 @@ function completeAllOrNot() {
       elem.classList.add("completed");
       elem.children[0].children[0].checked = true;
       elem.children[0].children[1].classList.add('isChecked');
-      allChecked = true;
+
     });
+    allChecked = true;
+    totalEntriesChecked = totalEntries;
   } else {
     firstCheckbox.nextElementSibling.classList.remove("isChecked");
     renderables.forEach((elem) => {
       elem.classList.remove("completed");
       elem.children[0].children[0].checked = false;
       elem.children[0].children[1].classList.remove('isChecked');
-      allChecked = false;
     });
+    allChecked = false;
+    totalEntriesChecked = 0;
   }
 }
 
