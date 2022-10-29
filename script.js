@@ -6,14 +6,24 @@ const [showAll, showActive, showCompleted, clearCompleted] =
   document.querySelectorAll(".buttonZ");
 const taskCont = document.querySelector(".task-cont");
 const itemsLeft = document.querySelector(".items-left-num");
-
+const firstCheckbox = document.querySelector("#formInput");
 //--logic--//
 
 let renderables = []; //Use this for storage ig
 let taskIndex = 0; //Would rather not use this
 let totalEntries = 0;
+let allChecked = false;
 
 // Add new todo
+
+function displayEntries() {
+  if (totalEntries <= 99) {
+    itemsLeft.textContent = totalEntries;
+  } else {
+    itemsLeft.textContent = "99+"
+  }
+}
+
 function checkForSpaces(str) {
   let allSpace = true;
   for (let char of str) {
@@ -47,13 +57,12 @@ function newtodo(e) {
   }
   taskIndex += 1;
   totalEntries += 1;
-  itemsLeft.textContent = totalEntries;
+  displayEntries();
 }
 
 //checkmark shenanigans (this kinda sucks :D :3)
 function checkmarkShenanigans(e) {
   let eTarget = e.target;
-  console.log(eTarget);
   if (eTarget.classList.contains("cross")) {
     eTarget = eTarget.closest(".checkmark");
   }
@@ -70,10 +79,15 @@ function checkmarkShenanigans(e) {
       eTarget.closest(".task").classList.remove("completed");
     }
   }
+  if (allChecked) {
+    firstCheckbox.checked = false;
+    firstCheckbox.nextElementSibling.classList.remove("isChecked");
+    allChecked = false;
+  }
 }
 // Delete completed tasks
 
-function deleteCompleted(e) {
+function deleteCompleted() {
   const removables = taskCont.querySelectorAll(".completed");
   removables.forEach((elem) => {
     elem.remove();
@@ -85,7 +99,9 @@ function deleteCompleted(e) {
       taskCont.firstElementChild.classList.add("firstTask");
     }
   }
-  itemsLeft.textContent = totalEntries;
+  firstCheckbox.nextElementSibling.classList.remove("isChecked");
+  firstCheckbox.checked = false;
+  displayEntries();
 }
 
 //filter listings
@@ -112,6 +128,25 @@ function showOl() {
     elem.style.display = "grid";
   });
 }
+function completeAllOrNot() {
+  if (firstCheckbox.checked) {
+    firstCheckbox.nextElementSibling.classList.add("isChecked");
+    renderables.forEach((elem) => {
+      elem.classList.add("completed");
+      elem.children[0].children[0].checked = true;
+      elem.children[0].children[1].classList.add('isChecked');
+      allChecked = true;
+    });
+  } else {
+    firstCheckbox.nextElementSibling.classList.remove("isChecked");
+    renderables.forEach((elem) => {
+      elem.classList.remove("completed");
+      elem.children[0].children[0].checked = false;
+      elem.children[0].children[1].classList.remove('isChecked');
+      allChecked = false;
+    });
+  }
+}
 
 //event listeners
 
@@ -121,3 +156,5 @@ taskCont.addEventListener("click", checkmarkShenanigans);
 showCompleted.addEventListener("click", showComp);
 showActive.addEventListener("click", showAct);
 showAll.addEventListener("click", showOl);
+firstCheckbox.addEventListener('change', completeAllOrNot);
+

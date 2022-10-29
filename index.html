@@ -1,69 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Josefin Sans"
-      rel="stylesheet"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/favicon-32x32.png"
-    />
-    <link rel="stylesheet" href="normalize.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
-    <title>Frontend Mentor | Todo app</title>
-  </head>
 
-  <body>
-    <img
-      class="background-image"
-      src="/images/bg-desktop-dark.jpg"
-      alt="desk-dark"
-    />
-    <main>
-      <div class="title-input">
-        <div class="title">
-          <h1>TODO</h1>
-          <img src="/images/icon-sun.svg" alt="sun" />
-        </div>
-        <div class="input-cont">
-          <div class="label-helper">
-            <input type="checkbox" id="formInput" />
-            <label class="check">
-              <span class="checkmark"
-                ><img class="cross" src="/images/icon-check.svg" alt=""
-              /></span>
-            </label>
-          </div>
-          <form action="" method="post" id="newtodoform">
-            <input
-              type="text"
-              placeholder="Create a new todo.."
-              name=""
-              id="newtodo"
-            />
-          </form>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- displays site properly based on user's device -->
+  <link href="https://fonts.googleapis.com/css?family=Josefin Sans" rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+  <link rel="stylesheet" href="normalize.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <title>Frontend Mentor | Todo app</title>
+</head>
+
+<body>
+  <img class="background-image" src="/images/bg-desktop-dark.jpg" alt="desk-dark" />
+  <main>
+    <div class="title-input">
+      <div class="title">
+        <h1>TODO</h1>
+        <img src="/images/icon-sun.svg" alt="sun" />
       </div>
-      <section class="task-cont"></section>
-      <div class="functionality">
-        <div class="itemsleftcont">
-          <span class="items-left-num items-left">0</span
-          ><span class="items-left">items left</span>
+      <div class="input-cont">
+        <div class="label-helper">
+          <input type="checkbox" id="formInput" />
+          <label class="check" for="formInput">
+            <span class="checkmark"><img class="cross" src="/images/icon-check.svg" alt="" /></span>
+          </label>
         </div>
-        <div class="buttons-cont">
-          <button class="buttonZ">All</button>
-          <button class="buttonZ">Active</button>
-          <button class="buttonZ">Completed</button>
-        </div>
-        <button class="buttonZ lonebu">Clear Completed</button>
+        <form action="" method="post" id="newtodoform">
+          <input type="text" placeholder="Create a new todo.." name="" id="newtodo" />
+        </form>
       </div>
-    </main>
-  </body>
+    </div>
+    <section class="task-cont"></section>
+    <div class="functionality">
+      <div class="itemsleftcont">
+        <span class="items-left-num items-left">0</span><span class="items-left">items left</span>
+      </div>
+      <div class="buttons-cont">
+        <button class="buttonZ">All</button>
+        <button class="buttonZ">Active</button>
+        <button class="buttonZ">Completed</button>
+      </div>
+      <button class="buttonZ lonebu">Clear Completed</button>
+    </div>
+  </main>
+</body>
+
 </html>

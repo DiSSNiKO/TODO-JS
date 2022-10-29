@@ -170,6 +170,7 @@ input[type="reset"] {
 
 .label-helper .check:hover {
   background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  cursor: pointer;
 }
 
 .task .checkmark:hover {
