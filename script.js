@@ -66,10 +66,7 @@ function checkmarkShenanigans(e) {
   if (eTarget.classList.contains("cross")) {
     eTarget = eTarget.closest(".checkmark");
   }
-  if (
-    eTarget.classList.contains("checkmark") ||
-    eTarget.classList.contains("check")
-  ) {
+  if (eTarget.classList.contains("checkmark") || eTarget.classList.contains("check")) {
     const checkbox = eTarget.closest(".check").previousElementSibling;
     if (!checkbox.checked) {
       eTarget.closest(".check").classList.add("isChecked");
