@@ -26,6 +26,12 @@ body {
   overflow: hidden;
 }
 
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 main {
   width: 600px;
   margin: auto;
@@ -78,7 +84,9 @@ main {
     user-select: none; */
   background-color: hsl(237, 14%, 26%);
   border-radius: 50%;
+  transition: all 1s;
 }
+
 
 .checkmark {
   position: absolute;
@@ -106,6 +114,23 @@ main {
   transform: translate(-50%, -50%);
   height: 10px;
   display: none;
+}
+
+.closeTask {
+  height: var(--mediumfont);
+  justify-self: end;
+  margin-right: 20px;
+  transition: all 0.1s ease-in-out;
+  opacity: 0;
+}
+
+.task:hover>.closeTask {
+  opacity: 100%;
+}
+
+.closeTask:hover {
+  cursor: pointer;
+  transform: scale(1.15);
 }
 
 #newtodo {
@@ -200,6 +225,10 @@ input[type="reset"] {
 
 .functionality button:hover {
   color: hsl(236, 33%, 92%);
+}
+
+.functionality button {
+  transition: color 0.2s;
 }
 
 .buttons-cont {
