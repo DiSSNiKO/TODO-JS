@@ -1,12 +1,15 @@
 //DOM elements
 
+const root = document.documentElement;
 const form = document.querySelector("#newtodoform");
 const newTaskInput = document.querySelector("#newtodo");
-const [showAll, showActive, showCompleted, clearCompleted] =
-  document.querySelectorAll(".buttonZ");
+const [showAll, showActive, showCompleted, clearCompleted] = document.querySelectorAll(".buttonZ");
 const taskCont = document.querySelector(".task-cont");
+const darkLight = document.querySelector(".darkLight");
+const backgroundImg = document.querySelector(".background-image");
 const itemsLeft = document.querySelector(".items-left-num");
 const firstCheckbox = document.querySelector("#formInput");
+
 //--logic--//
 
 let renderables = []; //Use this for storage ig
@@ -14,6 +17,7 @@ let taskIndex = 0; //Would rather not use this
 let totalEntries = 0;
 let totalEntriesChecked = 0;
 let allChecked = false;
+let isLight = false;
 
 // Add new todo
 
@@ -122,7 +126,9 @@ function singleTaskDelete(eTarget) {
     }
     curTask.remove();
     totalEntries -= 1;
-    itemsLeft.textContent = totalEntries;
+    if (totalEntries <= 99) {
+      itemsLeft.textContent = totalEntries;
+    }
     if (renderables.length === 0) {
       firstCheckbox.checked = false;
       checkfirstCheckbox(false);
@@ -205,6 +211,30 @@ function completeAllOrNot() {
   }
 }
 
+//Change theme
+
+function whyWouldYouChooseLight() {
+  if (!isLight) {
+    isLight = true;
+    darkLight.src = "/images/icon-moon.svg";
+    backgroundImg.src = "/images/bg-desktop-light.jpg"
+    root.style.setProperty('--mainColor', 'hsl(0, 0%, 98%)');
+    root.style.setProperty('--bodyColor', 'hsl(236, 33%, 92%)');
+    root.style.setProperty('--descColor', 'hsl(235, 19%, 35%)');
+    root.style.setProperty('--taskBorder', 'hsl(236, 9%, 61%)');
+    root.style.setProperty('--buttonHover', 'hsl(235, 0%, 0%)');
+  } else {
+    isLight = false;
+    darkLight.src = "/images/icon-sun.svg";
+    backgroundImg.src = "/images/bg-desktop-dark.jpg"
+    root.style.setProperty('--mainColor', 'hsl(235, 24%, 19%)');
+    root.style.setProperty('--bodyColor', 'hsl(235, 21%, 11%)');
+    root.style.setProperty('--descColor', 'hsl(234, 39%, 85%)');
+    root.style.setProperty('--taskBorder', 'hsl(237, 14%, 26%)');
+    root.style.setProperty('--buttonHover', 'hsl(236, 33%, 92%)');
+  }
+}
+
 //event listeners
 
 form.addEventListener("submit", newtodo);
@@ -214,4 +244,5 @@ showCompleted.addEventListener("click", showComp);
 showActive.addEventListener("click", showAct);
 showAll.addEventListener("click", showOl);
 firstCheckbox.addEventListener('change', completeAllOrNot);
+darkLight.addEventListener('click', whyWouldYouChooseLight);
 

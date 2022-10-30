@@ -4,7 +4,25 @@
   --smallfont: 15px;
   --checkboxwh: 18px;
   --checkboxbck: 20px;
+  --mainColor: hsl(235, 24%, 19%);
+  /* ^ hsl(235, 24%, 19%) or hsl(236, 33%, 92%)*/
+  --bodyColor: hsl(235, 21%, 11%);
+  /* ^ hsl(235, 21%, 11%) or hsl(0, 0%, 98%)*/
+  --descColor: hsl(234, 39%, 85%);
+  /* ^ hsl(234, 39%, 85%) or hsl(235, 19%, 35%)*/
+  --taskBorder: hsl(237, 14%, 26%);
+  /* ^ hsl(237, 14%, 26%) or hsl(236, 9%, 61%)*/
+  --buttonHover: hsl(236, 33%, 92%);
+  /* ^ hsl(236, 33%, 92%) or hsl(235, 19%, 35%)*/
+  --filterButtons: 25%;
+  --numLeft: 15%;
+  --lounbu: 15%;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 
 .background-image {
   position: fixed;
@@ -16,13 +34,18 @@
   z-index: -1;
 }
 
-* {
-  box-sizing: border-box;
+.darkLight {
+  transition: all 0.3s;
+}
+
+.darkLight:hover {
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 body {
   font-family: "Josefin Sans", sans-serif;
-  background-color: hsl(235, 21%, 11%);
+  background-color: var(--bodyColor);
   overflow: hidden;
 }
 
@@ -61,7 +84,7 @@ main {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-areas: "ch l l l l l l l";
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--mainColor);
   padding: 15px 0;
   border-radius: 5px;
   box-shadow: 10px 10px 30px 1px rgba(14, 13, 13, 0.5);
@@ -84,9 +107,7 @@ main {
     user-select: none; */
   background-color: hsl(237, 14%, 26%);
   border-radius: 50%;
-  transition: all 1s;
 }
-
 
 .checkmark {
   position: absolute;
@@ -95,7 +116,7 @@ main {
   transform: translate(-50%, -50%);
   width: var(--checkboxwh);
   height: var(--checkboxwh);
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--mainColor);
   border-radius: 50%;
 }
 
@@ -163,6 +184,7 @@ input[type="reset"] {
   scrollbar-width: none;
   overflow-y: scroll;
   overflow-x: hidden;
+  background-color: var(--mainColor);
 }
 
 .task-cont::-webkit-scrollbar {
@@ -171,21 +193,19 @@ input[type="reset"] {
 
 
 .task {
-  background-color: hsl(235, 24%, 19%);
   width: 100%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-areas: "ch de de de de de de cl";
-  background-color: hsl(235, 24%, 19%);
   padding: 15px 0;
-  border-bottom: 1px solid hsl(237, 14%, 26%);
+  border-bottom: 1px solid var(--taskBorder);
 }
 
 .descSpan {
   font-size: var(--mediumfont);
   grid-area: de;
   font-weight: 400;
-  color: hsl(234, 39%, 85%);
+  color: var(--descColor);
 }
 
 .label-helper {
@@ -193,7 +213,7 @@ input[type="reset"] {
   grid-area: ch;
 }
 
-.label-helper .check:hover {
+.check:hover {
   background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   cursor: pointer;
 }
@@ -218,13 +238,13 @@ input[type="reset"] {
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--mainColor);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
 .functionality button:hover {
-  color: hsl(236, 33%, 92%);
+  color: var(--buttonHover);
 }
 
 .functionality button {
@@ -233,7 +253,7 @@ input[type="reset"] {
 
 .buttons-cont {
   display: flex;
-  width: 25%;
+  width: var(--filterButtons);
   justify-content: space-between;
   font-size: var(--smallfont);
 }
@@ -245,7 +265,7 @@ input[type="reset"] {
 
 .lonebu {
   margin-right: 10px;
-  width: 15%;
+  width: var(--lounbu);
   font-size: var(--smallfont);
   font-weight: 400;
   color: hsl(234, 11%, 52%);
@@ -254,15 +274,16 @@ input[type="reset"] {
 
 .itemsleftcont {
   display: flex;
-  width: 15%;
+  width: var(--numLeft);
   margin-left: 10px;
 }
 
 .items-left {
-  display: block;
+  display: inline-block;
   font-size: var(--smallfont);
   font-weight: 400;
   color: hsl(234, 11%, 52%);
+  text-align: center;
 }
 
 .items-left-num {
@@ -289,6 +310,18 @@ input[type="reset"] {
   }
 }
 
+@media screen and (max-width: 805px) {
+  :root {
+    --filterButtons: 35%;
+    --lounbu: 30%;
+    --numLeft: 25%;
+  }
+
+  main {
+    width: 90%;
+  }
+}
+
 @media screen and (max-width: 500px) {
   main {
     width: 350px;
@@ -300,7 +333,7 @@ input[type="reset"] {
     --mediumfont: 15px;
     --smallfont: 12px;
     --checkboxwh: 15px;
-    --checkboxbck: 17px;
+    --checkboxbck: 18px;
   }
 
   .checkmark img {
@@ -308,10 +341,13 @@ input[type="reset"] {
     height: auto;
   }
 
+  .itemsleftcont {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .items-left-num {
-    width: 35px;
-    padding-left: 5px;
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .lonebu {
