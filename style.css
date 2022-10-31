@@ -201,6 +201,11 @@ input[type="reset"] {
   border-bottom: 1px solid var(--taskBorder);
 }
 
+.inDrag {
+  opacity: 0.5;
+  border-left: 1px solid aqua;
+}
+
 .descSpan {
   font-size: var(--mediumfont);
   grid-area: de;

@@ -38,13 +38,23 @@ function checkForSpaces(str) {
   }
   return allSpace;
 }
+
+
+function addDrag(bozo) {
+  bozo.addEventListener('dragstart', () => {
+    bozo.classList.add('inDrag');
+  });
+  bozo.addEventListener('dragend', () => {
+    bozo.classList.remove('inDrag');
+  });
+}
 function newtodo(e) {
   e.preventDefault();
   const tododesc = newTaskInput.value;
   if (tododesc === "" || checkForSpaces(tododesc)) {
     return "hell nah";
   }
-  const newHTML = ` <div class="task">
+  const newHTML = ` <div class="task" draggable="true">
                         <div class="label-helper">
                             <input type="checkbox" class='checkboksu' id='fi${taskIndex}'>
                             <label class="check" for='fi${taskIndex}'>
@@ -57,6 +67,7 @@ function newtodo(e) {
                     `;
   newTaskInput.value = "";
   taskCont.insertAdjacentHTML("beforeend", newHTML);
+  addDrag(taskCont.lastElementChild);
   renderables.push(taskCont.lastElementChild);
   taskIndex += 1;
   totalEntries += 1;
@@ -65,6 +76,32 @@ function newtodo(e) {
   displayEntries();
 }
 
+//Drag functions
+
+function dragOn(e) {
+  e.preventDefault();
+  const dragElem = document.querySelector(".inDrag");
+  const afterElement = dragAfterElement(taskCont, e.clientY);
+  if (afterElement === null) {
+    taskCont.appendChild(dragElem);
+  } else {
+    taskCont.insertBefore(dragElem, afterElement);
+  }
+  renderables = [...taskCont.querySelectorAll(".task")];
+}
+function dragAfterElement(container, y) {
+  const draggableElems = [...container.querySelectorAll(".task:not(.inDrag)")];
+
+  return draggableElems.reduce((closest, child) => {
+    const boundbox = child.getBoundingClientRect();
+    const offset = y - boundbox.top - boundbox.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset: offset, element: child };
+    } else {
+      return closest;
+    }
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
 
 
 //checkmark shenanigans (this kinda sucks :D :3)
@@ -240,6 +277,7 @@ function whyWouldYouChooseLight() {
 form.addEventListener("submit", newtodo);
 clearCompleted.addEventListener("click", deleteCompleted);
 taskCont.addEventListener("click", bigTaskContFunc);
+taskCont.addEventListener("dragover", dragOn);
 showCompleted.addEventListener("click", showComp);
 showActive.addEventListener("click", showAct);
 showAll.addEventListener("click", showOl);
