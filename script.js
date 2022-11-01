@@ -91,16 +91,29 @@ function dragOn(e) {
 }
 function dragAfterElement(container, y) {
   const draggableElems = [...container.querySelectorAll(".task:not(.inDrag)")];
-
-  return draggableElems.reduce((closest, child) => {
-    const boundbox = child.getBoundingClientRect();
+  let afterElem;
+  let finalOffset = Number.NEGATIVE_INFINITY;
+  draggableElems.forEach((elem) => {
+    const boundbox = elem.getBoundingClientRect();
     const offset = y - boundbox.top - boundbox.height / 2;
-    if (offset < 0 && offset > closest.offset) {
-      return { offset: offset, element: child };
-    } else {
-      return closest;
+    if (offset < 0 && offset > finalOffset) {
+      finalOffset = offset;
+      afterElem = elem;
     }
-  }, { offset: Number.NEGATIVE_INFINITY }).element;
+  });
+  return afterElem;
+  //ITS MY WAY OR THE HIIIIIGHWAY <333
+
+  // return draggableElems.reduce((closest, child) => {
+  //   const boundbox = child.getBoundingClientRect();
+  //   const offset = y - boundbox.top - boundbox.height / 2;
+  //   if (offset < 0 && offset > closest.offset) {
+  //     return { offset: offset, element: child };
+  //   } else {
+  //     return closest;
+  //   }
+  // }, { offset: Number.NEGATIVE_INFINITY }).element; 
+
 }
 
 
